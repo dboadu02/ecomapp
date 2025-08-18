@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer'
-
+import crypto from 'crypto'
 
 //this is a utility function to send emails
 export const sendMail = async ({ mailFrom, mailTo, subject, body }) => {
@@ -32,6 +32,14 @@ export const sendMail = async ({ mailFrom, mailTo, subject, body }) => {
 export const generateOTP = () => {
   return {
     otp: Math.floor(100000 + Math.random() * 900000).toString(),
-    otpExpires: new Date(Date.now() + 3 * 60 * 1000),//OTP expires in 3 minutes
+    otpExpires: new Date(Date.now() + 5 * 60 * 1000)//OTP expires in 5 minutes
+  };
+};
+
+//uses crypto to generate a token
+export const passwordResetToken = () => {
+  return {
+    resetToken: crypto.randomBytes(32).toString("hex"),
+    expiresAt: new Date(Date.now() + 3 * 60 * 1000),
   };
 };

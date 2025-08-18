@@ -92,33 +92,27 @@ export const createUser = async (req, res) => {
 
 
 
+
+
 //make a user an admin
 export const makeAdmin = async (req, res) => {
-  const {id} = req.params;
-  const {ultimateAdmin} = req.user;
+  const {id} = req.params
 
-  if(req.user.id && ultimateAdmin){
-    try {
-      const user = await User.findById(id);
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
+  try{
+    const user = await User.findById(id)
+    if(!user) return res.status(404).json({ message: 'User not found' })
 
-      // Check if the user is already an admin
-      if (user.isAdmin) {
-        return res.status(400).json({ message: "User is already an admin" });
-      }
+    //check if the user is already an admin
+    if(user.isAdmin) return res.status(400).json({ message: 'User is already an admin' })
+    
+    //if user is not an admin, make them an admin
+    user.isAdmin = true;
+    await user.save();
 
-      // Update the user's isAdmin field
-      user.isAdmin = true;
-      await user.save();
-
-      return res.status(200).json({ message: "User made an admin successfully", user });
-    } catch (error) {
-      console.error(error.message);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-  }else{
-    return res.status(403).json({ message: "You are not authorized to perform this action" });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: 'Internal server error' });
   }
+
+
 }

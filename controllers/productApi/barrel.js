@@ -1,0 +1,5 @@
+export * from './categoryController.js'
+export * from './createProduct.js'
+export *  from './readProducts.js'
+export * from './updateProduct.js'
+export * from './deleteProduct.js'

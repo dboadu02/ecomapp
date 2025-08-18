@@ -1,7 +1,7 @@
 import User from '../../models/userModel.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import {sendMail} from '../../utils/sendEmail.js'
+
 
 
 export const loggingIn = async (req, res) => {
@@ -29,7 +29,7 @@ export const loggingIn = async (req, res) => {
         // Generate a token for the user
         const genToken = (id) => {
             return jwt.sign({ id }, process.env.JWT_SECRET, 
-            {expiresIn: "2m",})
+            {expiresIn: "5m",})
         }
 
         
@@ -64,3 +64,5 @@ export const loggingOut = async (req, res) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 }
+
+

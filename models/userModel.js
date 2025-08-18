@@ -26,7 +26,9 @@ const userSchema = new Schema({
     verified: {
         type: Boolean,
         default: false
-    }
+    },
+    passwordResetToken: { type: String, default: null },
+    passwordResetExpires: { type: Date, default: null }
 }, {timestamps: true})
 
 const User = mongoose.model('User', userSchema)
