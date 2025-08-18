@@ -33,9 +33,12 @@ const cartSchema = new Schema(
       type: Number,
       default: 0
     },
-  },
-  { timestamps: true }
-);
+    orderStatus: {
+      type: String,
+      enum: ['pending', 'successful', 'failed'],
+      default: 'pending'
+    }
+  },{ timestamps: true });
 
 const Cart = mongoose.model("cart", cartSchema);
 export default Cart
