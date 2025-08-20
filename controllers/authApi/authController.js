@@ -54,9 +54,15 @@ export const loggingIn = async (req, res) => {
 
 //logging out user
 export const loggingOut = async (req, res) => {
+    const {id} = req.params
     
     // This will remove the accessToken from the user's browser
     try {
+        const user = await User.findById(id)
+        if(!user){
+            res.status(400).json({message: 'user not found'})
+        }
+
         res.clearCookie("accessToken")
         return res.status(200).json({ message: "Logout successful" });
     } catch (error) {
