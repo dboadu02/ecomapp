@@ -2,6 +2,7 @@ import Product from '../../models/productModel.js';
 import Category from '../../models/categoryModel.js';
 
 
+
 export const createProduct = async (req, res) => {
     const { name, description, price, stock } = req.body
     const { categoryId } = req.params
@@ -11,7 +12,7 @@ export const createProduct = async (req, res) => {
         if (!name || !price || !stock || !description) {
             return res.status(400).json({ message: 'Name, price, and category ID are required' });
         }
-        //check if the category exists
+        //check if the category that was selected for product exists
         const catergory = await Category.findById(categoryId)
         if (!catergory) {
             return res.status(404).json({ message: 'Category not found, select a different category or create one' });
@@ -26,6 +27,7 @@ export const createProduct = async (req, res) => {
         //create a new product
         const newProduct = new Product({
             name,
+            productImg: req.file ? req.file.path : null,
             description,
             price,
             stock,

@@ -2,14 +2,14 @@ import Router from "express";
 import {createCategory, getCategories, editCategory, deleteCategory, createProduct, getAllProducts, getProductsByCategory, getProductsByQuery, editProduct, deleteProduct} from "../controllers/productApi/barrel.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 import checkAdmin from "../middlewares/checkAdminStatus.js";
-
+import upload from "../middlewares/fileupload.js";
 
 const productRouter = Router();
 
 productRouter
   .post("/category/create", authMiddleware, checkAdmin, createCategory) // Create a new category
   //allows admins to create a new product
-  .post("/product/create/:categoryId", authMiddleware, checkAdmin, createProduct)
+  .post("/product/create/:categoryId", authMiddleware, checkAdmin, upload.single('productImg'), createProduct)
 
   //users should be able to access products without being registered
   .get("/categories", getCategories) // Get all categories
@@ -18,7 +18,7 @@ productRouter
   .get("/product/search", getProductsByQuery) 
 
   .put("/category/edit/:categoryId",authMiddleware, checkAdmin, editCategory)
-  .put("/product/edit/:id",authMiddleware, checkAdmin, editProduct)
+  .put("/product/edit/:id",authMiddleware, checkAdmin,upload.single('productImg'), editProduct)
   
 
   .delete("/category/delete/:categoryId",authMiddleware, checkAdmin, deleteCategory)

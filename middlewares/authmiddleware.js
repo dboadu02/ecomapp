@@ -15,6 +15,7 @@ const authMiddleware = async (req, res, next) => {
             return res.status(401).json({ message: 'Invalid token' })
         }
 
+        //check if user exists in database
         const verifiedUser = await User.findById(verifiedToken.id)
         if(!verifiedUser) {
             return res.status(404).json({ message: 'Invalid user' })
