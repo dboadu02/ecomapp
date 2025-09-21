@@ -1,6 +1,6 @@
 import Router from 'express'
 import { createCartItem, updateCartItem, getCartItems, getAllCarts, clearCartItems, deleteCartItem, updateStatus} from '../controllers/cartApis/barrel.js'
-import authMiddleware from '../middlewares/authMiddleware.js'
+import authMiddleware from '../middlewares/authmiddleware.js'
 import checkAdmin from '../middlewares/checkAdminStatus.js'
 
 const cartRouter = Router()

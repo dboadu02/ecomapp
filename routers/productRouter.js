@@ -1,6 +1,6 @@
 import Router from "express";
 import {createCategory, getCategories, editCategory, deleteCategory, createProduct, getAllProducts, getProductsByCategory, getProductsByQuery, editProduct, deleteProduct} from "../controllers/productApi/barrel.js";
-import authMiddleware from "../middlewares/authMiddleware.js";
+import authMiddleware from "../middlewares/authmiddleware.js";
 import checkAdmin from "../middlewares/checkAdminStatus.js";
 import upload from "../middlewares/fileupload.js";
 

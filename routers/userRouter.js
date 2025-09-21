@@ -1,6 +1,6 @@
 import Router from "express";
 import {createUser, makeAdmin, getUser, getAllUsers, updateUser, deleteUser} from "../controllers/userApis/barrel.js";
-import authMiddleware from "../middlewares/authMiddleware.js"
+import authMiddleware from "../middlewares/authmiddleware.js"
 import checkUlitimateAdmin from "../middlewares/checkUltimateAdmin.js";
 
 const userRouter = Router();
