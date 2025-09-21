@@ -25,11 +25,14 @@ app.use('/api/otp', otpRouter)
 app.use('/api', productRouter)
 app.use('/api', passwordResetRouter)
 app.use('/api', cartRouter)
+app.use('/', (req, res) => {
+  res.status(200).send("Welcome to E-commerce API")
+})
 
 
 
 const port = process.env.PORT 
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`)
+  console.log(`Server is running http://localhost:${port}`)
 })
