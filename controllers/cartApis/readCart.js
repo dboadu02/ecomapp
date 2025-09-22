@@ -15,21 +15,3 @@ export const getCartItems = async (req, res) => {
     console.log(error)
   }
 }
-
-
-
-
-//GET ALL CARTS
-export const getAllCarts = async(req, res) => {
-  try{
-    const carts = await Cart.find().populate("products.productId")
-    if(!carts){
-      res.status(404).json({message: 'No carts available'})
-    }
-
-    res.status(200).json(carts)
-  } catch(err){
-    res.status(500).json({message: 'internal server error'})
-
-  }
-}

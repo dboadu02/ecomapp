@@ -3,7 +3,7 @@ import Cart from '../../models/cartModel.js'
 
 //edit cart 
 export const updateCartItem = async (req, res) => {
-    const {productId, type} = req.params; //type is either increase pr decrease
+    const {productId, type} = req.params; //type is either increase or decrease
     const userId = req.user.id
     
     try{

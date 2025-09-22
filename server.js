@@ -7,6 +7,7 @@ import otpRouter from './routers/otpRouter.js'
 import productRouter from "./routers/productRouter.js"
 import passwordResetRouter from "./routers/passwordResetRouter.js"
 import cartRouter from "./routers/cartRouter.js"
+import orderRouter from "./routers/orderRouter.js"
 import cookieParser from 'cookie-parser'
 
 dotenv.config()
@@ -25,6 +26,7 @@ app.use('/api/otp', otpRouter)
 app.use('/api', productRouter)
 app.use('/api', passwordResetRouter)
 app.use('/api', cartRouter)
+app.use('/api', orderRouter)
 app.use('/', (req, res) => {
   res.status(200).send("Welcome to E-commerce API")
 })

@@ -32,11 +32,6 @@ const cartSchema = new Schema(
     totalCartPrice: {
       type: Number,
       default: 0
-    },
-    orderStatus: {
-      type: String,
-      enum: ['pending', 'successful', 'failed'],
-      default: 'pending'
     }
   },{ timestamps: true });
 
