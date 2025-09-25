@@ -26,10 +26,10 @@ export const loggingIn = async (req, res) => {
             return
         }
 
-        // Generate a token for the user
+        // Generate a token for the user wh
         const genToken = (id) => {
             return jwt.sign({ id }, process.env.JWT_SECRET, 
-            {expiresIn: "5m",})
+            {expiresIn: "60m",})
         }
 
         

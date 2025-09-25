@@ -27,7 +27,7 @@ app.use('/api', productRouter)
 app.use('/api', passwordResetRouter)
 app.use('/api', cartRouter)
 app.use('/api', orderRouter)
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
   res.status(200).send("Welcome to E-commerce API")
 })
 

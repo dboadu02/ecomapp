@@ -39,7 +39,7 @@ export const createOrder = async (req, res) => {
 
         await order.save()
         await cart.deleteOne() // Clear cart after order is placed
-        res.status(201).json({message: 'Order created successfully', order})
+       return res.status(201).json({message: 'Order created successfully', order})
 
     } catch(err){
         res.status(500).json({message: 'Internal server error'})
@@ -60,10 +60,11 @@ export const getUserOrders = async (req, res) => {
             return res.status(404).json({message: 'No orders found'})
         }
 
-        res.status(200).json({message: 'User orders fetched successfully', orders})
+       return res.status(200).json({message: 'User orders fetched successfully', orders})
 
     }catch(err){
         res.status(500).json({message: 'Internal server error'})
+        return
     }
 }
 
@@ -79,6 +80,7 @@ export const getAllOrders = async (req, res) => {
         res.status(200).json({message: 'All orders fetched successfully', orders})
     } catch(err){
         res.status(500).json({message: 'Internal server error'})
+        return
     }
 }
 
@@ -98,7 +100,7 @@ export const updateOrderStatus = async (req, res) => {
       "Cancelled",
     ];
     if (!allowedStatus.includes(status)) {
-      return res.status(400).json({ error: "Invalid payment status" });
+      return res.status(400).json({ error: "Invalid order status" });
     }
 
     const order = await Order.findByIdAndUpdate(
@@ -110,7 +112,7 @@ export const updateOrderStatus = async (req, res) => {
       return res.status(400).json({ message: "order not found" });
     }
 
-    res.json({ message: "Payment status updated successfully", order });
+    res.json({ message: "Payment status updated successfully", order })
   } catch (err) {
     return res.status(500).json({ message: "internal server error" });
   }

@@ -27,7 +27,7 @@ const authMiddleware = async (req, res, next) => {
     catch (error) {
         res
           .status(500)
-          .json({ message: "jwt token expired, please login again" });
+          .json({ message: "You may need to log in again" });
     }
 }
 
